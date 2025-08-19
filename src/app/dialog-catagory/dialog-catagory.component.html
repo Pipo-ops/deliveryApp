@@ -1,16 +1,18 @@
 <div class="dialog-container">
   <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
-  <h2 mat-dialog-title>ADD User</h2>
+  <div class="dialog-header-container">
+    <h2 mat-dialog-title>Add Category</h2>
+  </div>
   <mat-dialog-content class="dialog-main-container">
     <div>
       <mat-form-field appearance="outline" class="full-width">
-        <mat-label>Catagory</mat-label>
-        <input [disabled]="loading" matInput />
+        <mat-label>Catagory Name</mat-label>
+        <input [disabled]="loading" [(ngModel)]="catagory.catagoryName" matInput />
       </mat-form-field>
     </div>
     <div>
       <div class="file-upload-container">
-        <button mat-raised-button color="primary" (click)="fileInput.click()">
+        <button mat-raised-button (click)="fileInput.click()">
           Bild auswählen
         </button>
         <span class="file-name" *ngIf="selectedFileName">{{
@@ -23,16 +25,6 @@
           (change)="onFileSelected($event)"
         />
       </div>
-    </div>
-    <div>
-      <mat-form-field appearance="outline" class="mr-r-16">
-        <mat-label>Zip Code</mat-label>
-        <input [disabled]="loading" matInput />
-      </mat-form-field>
-      <mat-form-field appearance="outline">
-        <mat-label>City</mat-label>
-        <input [disabled]="loading" matInput />
-      </mat-form-field>
     </div>
   </mat-dialog-content>
   <mat-dialog-actions>

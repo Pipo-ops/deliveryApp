@@ -47,6 +47,14 @@ body {
 /* dialog*/
 .dialog-container{
     position: relative;
+    min-width: 400px;
+    min-height: 300px;
+}
+
+.dialog-header-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .dialog-name-container{
@@ -64,11 +72,13 @@ body {
 .close-btn{
     background-color: red;
     color: white;
-    border-color: red;
+    border: none;
     border-radius: 10px;
     cursor: pointer;
     font-size: 18px;
     width: 100px;
+    height: 30px;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
 
     &:hover{
         background-color: darkred;
@@ -79,11 +89,13 @@ body {
 .save-btn{
     background-color: #0c59be;
     color: white;
-    border-color: #0c59be;
+    border: none;
     border-radius: 10px;
     cursor: pointer;
     font-size: 18px;
     width: 100px;
+    height: 30px;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
 
     &:hover{
         background-color: #084a8f;

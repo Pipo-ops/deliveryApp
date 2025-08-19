@@ -3,12 +3,9 @@
     <h1>Category</h1>
   </div>
   <div class="category-card-container">
-    <mat-card class="category-card">
-      <img
-        mat-card-image
-        src="https://material.angular.dev/assets/img/examples/shiba2.jpg"
-        alt="Photo of a Shiba Inu"
-      /><mat-card-title>Shiba Inu</mat-card-title>
+    <mat-card class="category-card" *ngFor="let category of categories$ | async">
+      <img mat-card-image [src]="category.imageUrl" alt="{{ category.catagoryName }}" />
+      <mat-card-title>{{ category.catagoryName }}</mat-card-title>
     </mat-card>
   </div>
 </div>

@@ -1,29 +1,40 @@
-import { Component } from '@angular/core';
-import {MatCardModule} from '@angular/material/card';
-import {MatButtonModule} from '@angular/material/button';
-import {MatIconModule} from '@angular/material/icon';
+import { Component, OnInit, inject } from '@angular/core';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { DialogCatagoryComponent } from '../dialog-catagory/dialog-catagory.component';
+import { Firestore, collection, collectionData } from '@angular/fire/firestore';
+import { Observable } from 'rxjs';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-order',
   standalone: true,
   imports: [
-    MatCardModule,
-    MatButtonModule,
-    MatIconModule,
-    MatDialogModule,
+    CommonModule,
+    MatCardModule, 
+    MatButtonModule, 
+    MatIconModule, 
+    MatDialogModule
   ],
   templateUrl: './order.component.html',
-  styleUrl: './order.component.scss'
+  styleUrl: './order.component.scss',
 })
-export class OrderComponent {
+export class OrderComponent implements OnInit {
+  firestore: Firestore = inject(Firestore);
+  categories$!: Observable<any[]>;
 
-  constructor(public dialog: MatDialog, private router: Router) {
+  constructor(public dialog: MatDialog, private router: Router) {}
+
+  ngOnInit() {
+    const catagoryRef = collection(this.firestore, 'categories');
+    this.categories$ = collectionData(catagoryRef, { idField: 'id' });
   }
 
   openDialog() {
-    this.dialog.open(DialogCatagoryComponent)
+    const dialogRef = this.dialog.open(DialogCatagoryComponent);
+    dialogRef.afterClosed().subscribe(() => this.ngOnInit());
   }
 }
