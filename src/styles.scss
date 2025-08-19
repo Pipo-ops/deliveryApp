@@ -1,1 +1,93 @@
-/* You can add global styles to this file, and also import other style files */
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.mr-r-16{
+    margin-right: 16px;
+}
+
+.mr-top-16{
+    margin-top: 16px;
+}
+
+.mr-top-32 {
+  margin-top: 32px;
+}
+
+.full-width{
+    width: 100%;
+}
+
+.add-btn{
+    position: fixed;
+    bottom: 36px;
+    right: 36px;
+    border-radius: 100px;
+    border: none;
+    background-color: rgb(230, 101, 26);
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
+
+    &:hover {
+        scale: (1.1);
+    }
+
+    mat-icon{
+        color: rgb(255, 255, 255);
+    }
+}
+
+/* dialog*/
+.dialog-container{
+    position: relative;
+}
+
+.dialog-name-container{
+    margin-top: 16px;
+}
+
+.dialog-btn-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    width: 100%;
+}
+
+.close-btn{
+    background-color: red;
+    color: white;
+    border-color: red;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    width: 100px;
+
+    &:hover{
+        background-color: darkred;
+        border-color: darkred;
+    }
+}
+
+.save-btn{
+    background-color: #0c59be;
+    color: white;
+    border-color: #0c59be;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    width: 100px;
+
+    &:hover{
+        background-color: #084a8f;
+        border-color: #084a8f;
+    }
+}
+/* dialog*/
