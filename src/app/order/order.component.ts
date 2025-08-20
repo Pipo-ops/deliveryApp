@@ -3,11 +3,12 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { DialogCatagoryComponent } from '../dialog-catagory/dialog-catagory.component';
 import { Firestore, collection, collectionData } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { CommonModule } from '@angular/common';
+import { OrderCategoryComponent } from '../order-category/order-category.component';
 
 @Component({
   selector: 'app-order',
@@ -17,7 +18,9 @@ import { CommonModule } from '@angular/common';
     MatCardModule, 
     MatButtonModule, 
     MatIconModule, 
-    MatDialogModule
+    MatDialogModule,
+    OrderCategoryComponent,
+    RouterModule,
   ],
   templateUrl: './order.component.html',
   styleUrl: './order.component.scss',

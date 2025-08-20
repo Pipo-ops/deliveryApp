@@ -8,6 +8,7 @@ import {MatButtonModule} from '@angular/material/button';
 import { OrderComponent } from './order/order.component';
 import { LastDeliveryComponent } from './last-delivery/last-delivery.component';
 import { MyAccountComponent } from './my-account/my-account.component';
+import { OrderCategoryComponent } from './order-category/order-category.component';
 
 
 @Component({
@@ -22,6 +23,7 @@ import { MyAccountComponent } from './my-account/my-account.component';
     MatSidenavModule,
     MatButtonModule,
     OrderComponent,
+    OrderCategoryComponent,
     LastDeliveryComponent,
     MyAccountComponent,
   ],
