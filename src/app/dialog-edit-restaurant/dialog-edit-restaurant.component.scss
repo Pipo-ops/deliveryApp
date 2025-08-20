@@ -1,0 +1,23 @@
+.file-upload-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+
+  button{
+    cursor: pointer;
+    font-size: 16px;
+    background-color: rgb(230, 101, 26);
+    border: none;
+    border-radius: 10px;
+    height: 40px;
+    width: 130px;
+    color: rgb(255, 255, 255);
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+  }
+}
+
+.file-name {
+  font-style: italic;
+  color: #555;
+}

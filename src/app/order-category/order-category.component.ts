@@ -7,9 +7,16 @@ import { MatIconModule } from '@angular/material/icon';
 import { DialogRestaurantComponent } from '../dialog-restaurant/dialog-restaurant.component';
 import { CommonModule } from '@angular/common';
 import { Observable } from 'rxjs';
-import { Firestore, collection, collectionData } from '@angular/fire/firestore';
+import {
+  Firestore,
+  collection,
+  collectionData,
+  doc,
+  deleteDoc,
+} from '@angular/fire/firestore';
 import { MatButtonModule } from '@angular/material/button';
-import {MatMenuModule} from '@angular/material/menu';
+import { MatMenuModule } from '@angular/material/menu';
+import { DialogEditRestaurantComponent } from '../dialog-edit-restaurant/dialog-edit-restaurant.component';
 
 @Component({
   selector: 'app-order-category',
@@ -17,7 +24,7 @@ import {MatMenuModule} from '@angular/material/menu';
   imports: [
     MatCardModule,
     MatIconModule,
-    RouterModule,   
+    RouterModule,
     DialogRestaurantComponent,
     CommonModule,
     MatButtonModule,
@@ -32,7 +39,6 @@ export class OrderCategoryComponent implements OnInit {
 
   route = inject(ActivatedRoute);
   categoryId!: string;
-  
 
   constructor(public dialog: MatDialog, private router: Router) {}
 
@@ -46,4 +52,20 @@ export class OrderCategoryComponent implements OnInit {
     dialogRef.afterClosed().subscribe(() => this.ngOnInit());
   }
 
+  editRestaurant(restaurant: any) {
+    const dialogRef = this.dialog.open(DialogEditRestaurantComponent, {
+      data: { restaurant, categoryId: this.categoryId },
+    });
+
+    dialogRef.afterClosed().subscribe(() => this.ngOnInit());
+  }
+
+  async deleteRestaurant(id: string) {
+    try {
+      const restaurantDocRef = doc(this.firestore, `restaurant/${id}`);
+      await deleteDoc(restaurantDocRef);
+    } catch (error) {
+      console.error('Fehler beim Löschen des Restaurants:', error);
+    }
+  }
 }

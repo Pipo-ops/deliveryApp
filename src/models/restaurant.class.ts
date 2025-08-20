@@ -1,9 +1,10 @@
 export class Restaurant{
-    id: string;
+    id?: string;
     restaurantName: string;
     address: string;
     zipCode: number;
     city: string;
+    imageUrl: string;
 
     constructor(obj?: any) {
         this.id = obj?.id || '';
@@ -11,5 +12,6 @@ export class Restaurant{
         this.address = obj ? obj.address :'';
         this.zipCode = obj ? obj.zipCode :'';
         this.city = obj ? obj.city :'';
+        this.imageUrl = obj?.imageUrl || '';
     }
 }

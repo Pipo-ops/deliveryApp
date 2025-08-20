@@ -1,0 +1,65 @@
+<div class="dialog-container">
+  <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+  <div class="dialog-header-container">
+    <h2 mat-dialog-title>Edit Restaurant</h2>
+  </div>
+  <mat-dialog-content class="dialog-main-container">
+    <div>
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Restaurant Name</mat-label>
+        <input
+          [disabled]="loading"
+          [(ngModel)]="restaurant.restaurantName"
+          matInput
+        />
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Address</mat-label>
+        <input [disabled]="loading" [(ngModel)]="restaurant.address" matInput />
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field appearance="outline" class="mr-r-16">
+        <mat-label>Zip Code</mat-label>
+        <input [disabled]="loading" [(ngModel)]="restaurant.zipCode" matInput />
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>City</mat-label>
+        <input [disabled]="loading" [(ngModel)]="restaurant.city" matInput />
+      </mat-form-field>
+    </div>
+    <div>
+      <div class="file-upload-container">
+        <button mat-raised-button (click)="fileInput.click()">
+          Logo auswählen
+        </button>
+        <span class="file-name" *ngIf="selectedFileName">{{
+          selectedFileName
+        }}</span>
+        <input
+          #fileInput
+          type="file"
+          hidden
+          (change)="onFileSelected($event)"
+        />
+      </div>
+    </div>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <div class="dialog-btn-container">
+      <button
+        class="close-btn"
+        (click)="closeDialog()"
+        [disabled]="loading"
+        matButton
+      >
+        Cancel
+      </button>
+      <button class="save-btn" matButton [disabled]="loading" (click)="saveRestaurant()" cdkFocusInitial>
+        Save
+      </button>
+    </div>
+  </mat-dialog-actions>
+</div>
