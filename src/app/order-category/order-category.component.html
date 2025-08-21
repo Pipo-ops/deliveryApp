@@ -6,17 +6,26 @@
     <mat-card
       class="restaurant-card"
       *ngFor="let restaurant of restaurant$ | async"
+      [routerLink]="['/restaurant', restaurant.id]"
+      [queryParams]="{ categoryId: categoryId }"
     >
       <button
         matIconButton
         class="restaurant-menu-btn"
         [matMenuTriggerFor]="menu"
+        (click)="$event.stopPropagation()"
       >
         <mat-icon>more_vert</mat-icon>
       </button>
       <mat-menu #menu="matMenu">
         <button (click)="editRestaurant(restaurant)" mat-menu-item>Edit</button>
-        <button class="delet-btn-edit-menu" (click)="deleteRestaurant(restaurant.id)" mat-menu-item>Delete</button>
+        <button
+          class="delet-btn-edit-menu"
+          (click)="deleteRestaurant(restaurant.id)"
+          mat-menu-item
+        >
+          Delete
+        </button>
       </mat-menu>
 
       <div class="restaurant-card-content">
@@ -31,7 +40,9 @@
           <mat-card-title>{{ restaurant.restaurantName }}</mat-card-title>
           <div>
             <p class="delivery-info">{{ restaurant.address }}</p>
-            <p class="delivery-info">{{ restaurant.zipCode }}-{{ restaurant.city }}</p>
+            <p class="delivery-info">
+              {{ restaurant.zipCode }}-{{ restaurant.city }}
+            </p>
           </div>
           <div>
             <p class="delivery-info">Ab 50 € keine Lieferkosten!</p>

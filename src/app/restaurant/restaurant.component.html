@@ -1,0 +1,25 @@
+<div class="company-container">
+  <div class="company-header-container">
+    <div class="company-logo-container">
+      <img src="./assets/img/logo/burger-1487481_640.png" alt="" />
+    </div>
+  </div>
+  <div class="company-name-container">
+    <div>
+      <h1 class="company-name-h1">Resturant Name</h1>
+    </div>
+    <div>
+      <button matIconButton class="company-menu-btn" [matMenuTriggerFor]="menu">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item>Edit</button>
+        <button class="delet-btn-edit-menu" mat-menu-item>Delete</button>
+      </mat-menu>
+    </div>
+  </div>
+  <div class="company-delivery-info-container">
+    <p class="delivery-info">Ab 50 € keine Lieferkosten!</p>
+    <span>⭐⭐⭐⭐☆ (217 Bewertungen)</span>
+  </div>
+</div>
