@@ -62,6 +62,7 @@
   align-items: center;
   padding: 16px;
   height: 180px;
+  border-radius: 10px;
   background-color: rgb(230, 101, 26);
   cursor: pointer;
 
@@ -92,7 +93,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 20px;
+    gap: 10px;
   }
 
   mat-card-title {

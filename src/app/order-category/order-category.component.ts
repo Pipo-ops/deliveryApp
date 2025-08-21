@@ -9,14 +9,14 @@ import { CommonModule } from '@angular/common';
 import { Observable } from 'rxjs';
 import {
   Firestore,
-  collection,
-  collectionData,
   doc,
   deleteDoc,
+  getDoc
 } from '@angular/fire/firestore';
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
 import { DialogEditRestaurantComponent } from '../dialog-edit-restaurant/dialog-edit-restaurant.component';
+import { query, where, collectionData, collection } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-order-category',
@@ -38,17 +38,31 @@ export class OrderCategoryComponent implements OnInit {
   restaurant$!: Observable<any[]>;
 
   route = inject(ActivatedRoute);
+  categoryName: string = '';
   categoryId!: string;
 
   constructor(public dialog: MatDialog, private router: Router) {}
 
   ngOnInit() {
-    const catagoryRef = collection(this.firestore, 'restaurant');
-    this.restaurant$ = collectionData(catagoryRef, { idField: 'id' });
-  }
+  this.categoryId = this.route.snapshot.paramMap.get('id') || '';
+
+  const categoryDocRef = doc(this.firestore, `categories/${this.categoryId}`);
+  getDoc(categoryDocRef).then(docSnap => {
+    if (docSnap.exists()) {
+      this.categoryName = docSnap.data()['catagoryName'];
+    }
+  });
+
+  const restaurantRef = collection(this.firestore, 'restaurant');
+  const q = query(restaurantRef, where('categoryId', '==', this.categoryId));
+  this.restaurant$ = collectionData(q, { idField: 'id' });
+}
 
   openDialog() {
-    const dialogRef = this.dialog.open(DialogRestaurantComponent);
+    const dialogRef = this.dialog.open(DialogRestaurantComponent, {
+      data: { categoryId: this.categoryId },
+    });
+
     dialogRef.afterClosed().subscribe(() => this.ngOnInit());
   }
 

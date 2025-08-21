@@ -1,6 +1,6 @@
 <div class="restaurant-container">
   <div class="restaurant-header-container">
-    <h1>Restaurant`s</h1>
+    <h1>{{ categoryName }}</h1>
   </div>
   <div class="restaurant-card-container">
     <mat-card
@@ -29,6 +29,10 @@
         </div>
         <div class="restaurant-info">
           <mat-card-title>{{ restaurant.restaurantName }}</mat-card-title>
+          <div>
+            <p class="delivery-info">{{ restaurant.address }}</p>
+            <p class="delivery-info">{{ restaurant.zipCode }}-{{ restaurant.city }}</p>
+          </div>
           <div>
             <p class="delivery-info">Ab 50 € keine Lieferkosten!</p>
             <div class="rating">⭐⭐⭐⭐☆ <span>(217 Bewertungen)</span></div>

@@ -15,7 +15,9 @@ import {
   getDownloadURL,
 } from '@angular/fire/storage';
 import { inject } from '@angular/core';
+import { Inject } from '@angular/core';
 import { Restaurant } from '../../models/restaurant.class';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-dialog-restaurant',
@@ -39,8 +41,14 @@ export class DialogRestaurantComponent {
   restaurant = new Restaurant();
   selectedFile!: File;
   loading = false;
+  categoryId!: string;
 
-  constructor(public dialogRef: MatDialogRef<DialogRestaurantComponent>) {}
+  constructor(
+    public dialogRef: MatDialogRef<DialogRestaurantComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any
+  ) {
+    this.categoryId = data.categoryId;
+  }
 
   selectedFileName: string | null = null;
 
@@ -85,6 +93,7 @@ export class DialogRestaurantComponent {
         zipCode: this.restaurant.zipCode,
         city: this.restaurant.city,
         imageUrl: imageUrl,
+        categoryId: this.categoryId,
       };
 
       const restaurantCollection = collection(this.firestore, 'restaurant');
