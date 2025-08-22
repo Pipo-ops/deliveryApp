@@ -1,0 +1,61 @@
+<div class="dialog-container">
+  <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+
+  <div class="dialog-header-container">
+    <h2 mat-dialog-title>Add Dish</h2>
+  </div>
+
+  <mat-dialog-content class="dialog-main-container">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Category</mat-label>
+      <input [(ngModel)]="dish.category" [disabled]="loading" matInput />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Dish Name</mat-label>
+      <input [(ngModel)]="dish.name" [disabled]="loading" matInput />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>additional text</mat-label>
+      <input [(ngModel)]="dish.text" [disabled]="loading" matInput />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Price (€)</mat-label>
+      <input [(ngModel)]="dish.price" [disabled]="loading" matInput type="number" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>category order</mat-label>
+      <input [(ngModel)]="dish.categoryOrder" [disabled]="loading" matInput type="number" />
+    </mat-form-field>
+
+    <div class="file-upload-container">
+      <button mat-raised-button (click)="fileInput.click()">select image</button>
+      <span class="file-name" *ngIf="selectedFileName">{{ selectedFileName }}</span>
+      <input #fileInput type="file" hidden (change)="onFileSelected($event)" />
+    </div>
+  </mat-dialog-content>
+
+  <mat-dialog-actions>
+    <div class="dialog-btn-container">
+      <button class="close-btn"
+        (click)="closeDialog()"
+        [disabled]="loading"
+        matButton
+      >
+        Cancel
+      </button>
+      <button
+        class="save-btn"
+        matButton
+        [disabled]="loading"
+        (click)="saveDish()"
+        cdkFocusInitial
+      >
+        Save
+      </button>
+    </div>
+  </mat-dialog-actions>
+</div>

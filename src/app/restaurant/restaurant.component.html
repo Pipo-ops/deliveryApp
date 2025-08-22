@@ -1,12 +1,15 @@
-<div class="company-container">
+<div class="company-container" *ngIf="restaurantData">
   <div class="company-header-container">
     <div class="company-logo-container">
-      <img src="./assets/img/logo/burger-1487481_640.png" alt="" />
+      <img
+        [src]="restaurantData.imageUrl"
+        alt="{{ restaurantData.restaurantName }}"
+      />
     </div>
   </div>
   <div class="company-name-container">
     <div>
-      <h1 class="company-name-h1">Resturant Name</h1>
+      <h1 class="company-name-h1">{{ restaurantData.restaurantName }}</h1>
     </div>
     <div>
       <button matIconButton class="company-menu-btn" [matMenuTriggerFor]="menu">
@@ -14,12 +17,48 @@
       </button>
       <mat-menu #menu="matMenu">
         <button mat-menu-item>Edit</button>
-        <button class="delet-btn-edit-menu" mat-menu-item>Delete</button>
+        <button class="delet-btn-edit-menu" (click)="openDeleteDialog()" mat-menu-item>Delete</button>
       </mat-menu>
     </div>
+  </div>
+  <div class="company-delivery-address-container">
+    <span
+      >{{ restaurantData.address }} {{ restaurantData.zipCode }} -
+      {{ restaurantData.city }}
+    </span>
   </div>
   <div class="company-delivery-info-container">
     <p class="delivery-info">Ab 50 € keine Lieferkosten!</p>
     <span>⭐⭐⭐⭐☆ (217 Bewertungen)</span>
+  </div>
+</div>
+<button matFab (click)="openDialog()" class="add-btn">
+  <mat-icon>add</mat-icon>
+</button>
+
+<div class="dish-section" *ngFor="let category of categoryOrder">
+  <h2 class="category-title">{{ categoryDisplayNames[category] }}</h2>
+
+  <div class="dish-card-container">
+    <mat-card class="dish-card" *ngFor="let dish of dishesByCategory[category]">
+      <div class="dish-card-main">
+        <div>
+          <mat-card-content class="dish-card-info">
+            <div>
+              <mat-card-title class="dish-titel">{{
+                dish.name
+              }}</mat-card-title>
+            </div>
+            <div class="dish-price-text-container">
+              <p>{{ dish.price | currency : "EUR" }}</p>
+              <p>{{ dish.text }}</p>
+            </div>
+          </mat-card-content>
+        </div>
+        <div class="dish-img-container" *ngIf="dish.imageUrl">
+          <img mat-card-image [src]="dish.imageUrl" alt="{{ dish.dishName }}" />
+        </div>
+      </div>
+    </mat-card>
   </div>
 </div>

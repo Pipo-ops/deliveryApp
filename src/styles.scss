@@ -34,6 +34,7 @@ body {
     width: 60px;
     height: 60px;
     cursor: pointer;
+    z-index: 1000;
 
     &:hover {
         scale: (1.1);
@@ -48,7 +49,9 @@ body {
 .dialog-container{
     position: relative;
     min-width: 400px;
+    max-width: 600px;
     min-height: 300px;
+    border-radius: 10px;
 }
 
 .dialog-header-container {
@@ -82,7 +85,6 @@ body {
 
     &:hover{
         background-color: darkred;
-        border-color: darkred;
     }
 }
 
@@ -99,7 +101,6 @@ body {
 
     &:hover{
         background-color: #084a8f;
-        border-color: #084a8f;
     }
 }
 /* dialog*/

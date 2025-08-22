@@ -1,0 +1,39 @@
+<div class="dialog-container">
+  <h2 mat-dialog-title>Delete Dish</h2>
+
+  <mat-dialog-content>
+    <div *ngFor="let category of getCategoryKeys()">
+      <h3>{{ category }}</h3>
+
+      <mat-card
+        *ngFor="let dish of dishesByCategory[category]"
+        style="margin-bottom: 8px"
+      >
+        <mat-card-title>{{ dish.name }}</mat-card-title>
+        <mat-card-subtitle>{{
+          dish.price | currency : "EUR"
+        }}</mat-card-subtitle>
+        <button
+          class="close-btn"
+          (click)="deleteDish(dish.id)"
+          [disabled]="loading"
+          matButton
+        >
+          Delete
+        </button>
+      </mat-card>
+    </div>
+  </mat-dialog-content>
+  <div class="cancel-btn-container">
+    <mat-dialog-actions>
+      <button
+        class="close-btn"
+        (click)="close()"
+        [disabled]="loading"
+        matButton
+      >
+        Cancel
+      </button>
+    </mat-dialog-actions>
+  </div>
+</div>
