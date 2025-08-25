@@ -16,8 +16,13 @@
         <mat-icon>more_vert</mat-icon>
       </button>
       <mat-menu #menu="matMenu">
-        <button mat-menu-item>Edit</button>
-        <button class="delet-btn-edit-menu" (click)="openDeleteDialog()" mat-menu-item>Delete</button>
+        <button
+          class="delet-btn-edit-menu"
+          (click)="openDeleteDialog()"
+          mat-menu-item
+        >
+          Delete
+        </button>
       </mat-menu>
     </div>
   </div>
@@ -58,6 +63,13 @@
         <div class="dish-img-container" *ngIf="dish.imageUrl">
           <img mat-card-image [src]="dish.imageUrl" alt="{{ dish.dishName }}" />
         </div>
+        <button
+          matIconButton
+          class="company-add-btn"
+          (click)="addToBasket(dish)"
+        >
+          <mat-icon>add</mat-icon>
+        </button>
       </div>
     </mat-card>
   </div>

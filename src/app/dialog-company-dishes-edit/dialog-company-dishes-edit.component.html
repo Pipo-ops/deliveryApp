@@ -17,7 +17,7 @@
     </mat-form-field>
 
     <mat-form-field appearance="outline" class="full-width">
-      <mat-label>additional text</mat-label>
+      <mat-label>Additional text</mat-label>
       <input [(ngModel)]="dish.text" [disabled]="loading" matInput />
     </mat-form-field>
 
@@ -27,12 +27,12 @@
     </mat-form-field>
 
     <mat-form-field appearance="outline" class="full-width">
-      <mat-label>category order</mat-label>
+      <mat-label>Category order</mat-label>
       <input [(ngModel)]="dish.categoryOrder" [disabled]="loading" matInput type="number" />
     </mat-form-field>
 
     <div class="file-upload-container">
-      <button mat-raised-button (click)="fileInput.click()">select image</button>
+      <button mat-raised-button (click)="fileInput.click()">Select image</button>
       <span class="file-name" *ngIf="selectedFileName">{{ selectedFileName }}</span>
       <input #fileInput type="file" hidden (change)="onFileSelected($event)" />
     </div>

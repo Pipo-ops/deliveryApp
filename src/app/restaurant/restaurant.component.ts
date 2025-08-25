@@ -8,15 +8,12 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { DialogCompanyDishesEditComponent } from '../dialog-company-dishes-edit/dialog-company-dishes-edit.component';
 import { MatDialog } from '@angular/material/dialog';
-import {
-  query,
-  where,
-  collection,
-  getDocs,
-} from '@angular/fire/firestore';
+import { query, where, collection, getDocs } from '@angular/fire/firestore';
 import { MatCardModule } from '@angular/material/card';
-import { Dish } from '../../models/dish.class'; 
+import { Dish } from '../../models/dish.class';
 import { DialogDeleteDishesComponent } from '../dialog-delete-dishes/dialog-delete-dishes.component';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { BasketService } from '../services/basket.service';
 
 @Component({
   selector: 'app-restaurant',
@@ -28,6 +25,7 @@ import { DialogDeleteDishesComponent } from '../dialog-delete-dishes/dialog-dele
     CommonModule,
     RouterModule,
     MatCardModule,
+    MatSidenavModule,
   ],
   templateUrl: './restaurant.component.html',
   styleUrl: './restaurant.component.scss',
@@ -42,7 +40,13 @@ export class RestaurantComponent implements OnInit {
   categoryOrder: string[] = [];
   categoryDisplayNames: { [key: string]: string } = {};
 
-  constructor(private dialog: MatDialog, private route: ActivatedRoute) {}
+  constructor(
+    private dialog: MatDialog,
+    private route: ActivatedRoute,
+    private basketService: BasketService
+  ) {}
+
+  basketOpened = false;
 
   ngOnInit(): void {
     this.restaurantId = this.route.snapshot.paramMap.get('id') || '';
@@ -104,12 +108,20 @@ export class RestaurantComponent implements OnInit {
   }
 
   openDeleteDialog() {
-  const dialogRef = this.dialog.open(DialogDeleteDishesComponent, {
-    data: { restaurantId: this.restaurantId },
-  });
+    const dialogRef = this.dialog.open(DialogDeleteDishesComponent, {
+      data: { restaurantId: this.restaurantId },
+    });
 
-  dialogRef.afterClosed().subscribe(() => {
-    this.loadDishes();
-  });
-}
+    dialogRef.afterClosed().subscribe(() => {
+      this.loadDishes();
+    });
+  }
+
+  addToBasket(dish: Dish) {
+    this.basketService.addItem({
+      name: dish.name,
+      price: dish.price,
+      quantity: 1,
+    });
+  }
 }

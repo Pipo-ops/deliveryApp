@@ -9,8 +9,6 @@ import { CommonModule } from '@angular/common';
 import { MatDialogRef } from '@angular/material/dialog';
 import {
   Firestore,
-  collection,
-  addDoc,
   doc,
   updateDoc,
 } from '@angular/fire/firestore';
